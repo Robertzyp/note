@@ -14,7 +14,7 @@ internal/mock = 生成文件目录
 	mocks "github.com/fpay/microkit-go/internal/tests/mocks"
 	. "github.com/golang/mock/gomock"
 	"github.com/labstack/echo"
-  . "github.com/smartystreets/goconvey/convey
+        . "github.com/smartystreets/goconvey/convey
   
   // 初始化controller
   func genAddressCtrl(t *testing.T) (*AddressController, *mocks.MockAddressService, func()) {
@@ -22,13 +22,15 @@ internal/mock = 生成文件目录
 	addrSvc := mocks.NewMockAddressService(ctrl)
 	addressCtrl := NewAddressController(addrSvc)
   return addressCtrl, addrSvc, ctrl.Finish
-  
+ } 
   func TestAddressController_Create(t *testing.T) {
 	addressCtrl, addrSvc, teardown := genAddressCtrl(t)
 	defer teardown()
-	e := echo.New()
+  e := echo.New()
+}
 	url := "http://localhost:11189/v1/order"
-	Convey("Normal: ", t, func() {
+  // 网页测试工具
+  Convey("Normal: ", t, func() {
     // 模拟service 返回值
     addrSvc.EXPECT().Create(Any()).Return(nil)
     // 模拟http 请求数据
@@ -47,6 +49,7 @@ internal/mock = 生成文件目录
     // 指定controller 方法
     addressCtrl.Create(ctx)
     // 查看期望返回值
-		So(response.StatusCode, ShouldEqual, 200)
-	})
+    So(response.StatusCode, ShouldEqual, 200)
+    
+})
 ```
