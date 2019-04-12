@@ -15,16 +15,17 @@ func MockAddressService(t *testing.T) (*AddressService, sqlmock.Sqlmock, func())
 func TestAddressService_Get(t *testing.T) {
 	addrSvc, mock, teardown := MockAddressService(t)
 	defer teardown()
-G
 	Convey("NotFound: ", t, func() {
     // 声明所执行的sql 必须所有写的sql 都执行到 Gorm里面无Delete
     mock.ExpectQuery("^SELECT").WillReturnRows(sqlmock.NewRows([]string{"id"}).FromCSVString(""))
     mock.ExpectExec("^UPDATE").WillReturnResult(sqlmock.NewResult(1, 1))
     mock.ExpectExec("^INSERT INTO").WillReturnResult(sqlmock.NewResult(1, 1)
-		mock.ExpectBegin()
+    // 添加事务
+    mock.ExpectBegin()
 		mock.ExpectQuery("^select").WithArgs(5).WillReturnRows(sqlmock.NewRows([]string{"stock"}).FromCSVString("10"))
 		mock.ExpectExec("^update").WillReturnResult(sqlmock.NewResult(1, 1))
-		mock.ExpectCommit()_, err := addrSvc.Get(8)
+		mock.ExpectCommit()
+    _, err := addrSvc.Get(8)
 		So(err, ShouldEqual, codes.RecordNotFoundErr)
 	})
 
