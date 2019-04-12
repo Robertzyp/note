@@ -19,6 +19,6 @@
   - release 合并到 develop/master
   - 添加更新标记等, 更新到 master
   
-5.
+5. hotfix
  - git flow hotfix start missing-link: 修复正式版本中的问题(基于 master 分支)
  - git flow hotfix finish missing-link: 完成修复, 提交到master
