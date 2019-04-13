@@ -6,16 +6,26 @@
   ```
   2. 生成密钥
   
-    `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
+    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
   3. 本地初始化
   
-    `git init`
+    git init
   4. 添加到暂存区
    
-    `git add`
+    git add
   5. 提交到本地分支
    
-    `git commit -m // 必须添加解释`
+    git commit -m // 必须添加解释
   6. 推到远程分支
    
-    `git push// 此时必须绑定到远程分支`
+    git push// 此时必须绑定到远程分支
+
+  7. 查看当前tag
+
+    git tag -l
+  8. 新建tag
+   
+    git tag 0.3.2
+  9.  推到远端
+    
+    git tag --tag 
