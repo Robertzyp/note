@@ -19,3 +19,4 @@
    - methods() function 可在其他方法调用
    - mounted() 挂载
   7. style 加上scoped 组件内样式
+  8. 加入tsconfig 获得ts扩展
