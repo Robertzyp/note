@@ -20,3 +20,9 @@
   9. php artisan queue:retry 5 重试ID
   10. php artisan queue:forget 5 删除失败任务
   11. php artisan queue:flush 删除所有失败任务
+
+
+### laravel 根据不同配置 生成不同的实现类
+  1. 公共继承queueManage类 
+  2. 调用this->addConnector 添加新的链接，value为闭包 该闭包返回 新的链接的具体实现类
+  3. 利用传入的name 调用resolve 方法、解析闭包  返回实现类
